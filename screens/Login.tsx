@@ -1,25 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Pressable, TextInput } from 'react-native';
-import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged,User} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, User } from "firebase/auth";
 
+/**
+ * Main authentication component that handles user login and account creation.
+ * @returns {JSX.Element} The rendered component.
+ */
 export default function App() {
   const auth = getAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-
+  /**
+   * Handles the creation of a new user account.
+   */
   const handleCreate = () => {
     if (email && password) {
       createUserWithEmailAndPassword(auth, email, password)
+        .catch(error => setErrorMessage(error.message));
     } else {
       setErrorMessage("Please fill out both fields.");
     }
   }
 
+  /**
+   * Handles user login.
+   */
   const handleLogin = () => {
     if (email && password) {
       signInWithEmailAndPassword(auth, email, password)
+        .catch(error => setErrorMessage(error.message));
     } else {
       setErrorMessage("Please fill out both fields.");
     }
@@ -30,13 +41,13 @@ export default function App() {
       <Text style={styles.text}>Create an account or login.</Text>
       {errorMessage && <Text>{errorMessage}</Text>}
       <TextInput
-       style={styles.textInput}
+        style={styles.textInput}
         value={email}
         onChangeText={(e) => setEmail(e)}
         placeholder="Email"
       />
       <TextInput
-       style={styles.textInput}
+        style={styles.textInput}
         secureTextEntry={true}
         value={password}
         onChangeText={(e) => setPassword(e)}
@@ -45,10 +56,9 @@ export default function App() {
       <Pressable onPress={handleLogin} style={styles.button}>
         <Text style={styles.buttonText}>Login</Text>
       </Pressable>
-      <Pressable  style={styles.button} onPress={handleCreate}>
+      <Pressable style={styles.button} onPress={handleCreate}>
         <Text style={styles.buttonText}>Create Account</Text>
       </Pressable>
-     
     </View>
   );
 }

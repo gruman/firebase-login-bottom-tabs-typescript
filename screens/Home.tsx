@@ -20,7 +20,7 @@ const Home: React.FC<ScreenProps> = ({ user }) => {
         style={styles.itemContainer}
         onPress={() => signOut(auth)}>
         {/* Display the logout text */}
-        <Text style={styles.name}>Logout of Settings</Text>
+        <Text style={styles.name}>Logout of Home</Text>
       </Pressable>
       {/* Display the UID of the logged-in user */}
       <Text style={styles.uid}>UID: {user.uid}</Text>

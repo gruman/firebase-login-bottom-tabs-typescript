@@ -2,7 +2,7 @@
 
 How to use Firebase Authentication with React Native Bottom Tabs
 
-**Tutorial:** [https://gruman.co/](https://gruman.co)
+**Tutorial:** [/react-native-bottom-tabs-firebase-login](/react-native-bottom-tabs-firebase-login)
 
 **Portfolio:** [https://gruman.co](https://gruman.co)
 
